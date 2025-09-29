@@ -1,0 +1,12 @@
+<bw-header></bw-header>
+<main class="bw-container bw-main" [@routeFade]="o && o.activatedRoute.routeConfig?.path">
+  <router-outlet #o="outlet"></router-outlet>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <section id="content"></section>
+  <div class="grain"></div>
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--br"></div>
+</main>
+<bw-footer></bw-footer>
+
+

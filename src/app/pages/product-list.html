@@ -1,0 +1,136 @@
+<section class="product-list-page">
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Discover Amazing Products</h1>
+        <p>Shop the latest trends and find everything you need</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">10K+</span>
+            <span class="stat-label">Products</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">50K+</span>
+            <span class="stat-label">Happy Customers</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">4.9★</span>
+            <span class="stat-label">Rating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters and Sorting -->
+    <div class="filters-section">
+      <div class="filters-row">
+        <div class="filter-group">
+          <label>Category:</label>
+          <select class="filter-select">
+            <option>All Categories</option>
+            <option>Electronics</option>
+            <option>Fashion</option>
+            <option>Home & Garden</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>Price:</label>
+          <select class="filter-select">
+            <option>All Prices</option>
+            <option>Under $50</option>
+            <option>$50 - $100</option>
+            <option>$100 - $200</option>
+            <option>Over $200</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>Sort by:</label>
+          <select class="filter-select">
+            <option>Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest</option>
+            <option>Best Rating</option>
+          </select>
+        </div>
+        
+        <div class="view-toggle">
+          <button class="view-btn active">☰</button>
+          <button class="view-btn">⊞</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-section">
+      <div class="products-header">
+        <h2>Featured Products</h2>
+        <span class="product-count">{{ products().length }} products found</span>
+      </div>
+      
+      <div class="products-grid">
+        <article class="product-card" *ngFor="let p of products()" [@card]>
+          <div class="product-image">
+            <a [routerLink]="['/product', p.id]">
+              <img [src]="p.image" [alt]="p.title" />
+            </a>
+            <div class="product-badges">
+              <span class="badge new" *ngIf="p.id === '1'">New</span>
+              <span class="badge sale" *ngIf="p.id === '2'">Sale</span>
+            </div>
+            <div class="product-actions">
+              <button class="action-btn wishlist-btn" 
+                      [class.active]="isInWishlist(p.id)"
+                      (click)="toggleWishlist(p)" 
+                      title="Add to Wishlist">❤️</button>
+              <button class="action-btn quick-view-btn" title="Quick View">👁️</button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <div class="product-category">Electronics</div>
+            <h3 class="product-title">
+              <a [routerLink]="['/product', p.id]">{{ p.title }}</a>
+            </h3>
+            <p class="product-description">{{ p.description }}</p>
+            
+            <div class="product-rating">
+              <div class="stars">★★★★★</div>
+              <span class="rating-count">(128)</span>
+            </div>
+            
+            <div class="product-price">
+              <span class="current-price">${{ p.price }}</span>
+              <span class="original-price" *ngIf="p.id === '2'">${{ p.price + 20 }}</span>
+            </div>
+            
+            <div class="product-footer">
+              <button class="add-to-cart-btn" (click)="addToCart(p)">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-section">
+      <div class="pagination">
+        <button class="page-btn disabled">‹ Previous</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <span class="page-dots">...</span>
+        <button class="page-btn">10</button>
+        <button class="page-btn">Next ›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+

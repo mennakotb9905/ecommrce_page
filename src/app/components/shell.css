@@ -1,0 +1,49 @@
+.bw-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.bw-main {
+  min-height: calc(100dvh - 64px - 72px);
+  position: relative;
+  background: #fff;
+  color: #000;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: .07;
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+}
+
+.corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+}
+
+.corner--tl {
+  top: 12px;
+  left: 12px;
+  border-top: 2px solid #000;
+  border-left: 2px solid #000;
+}
+
+.corner--br {
+  bottom: 12px;
+  right: 12px;
+  border-bottom: 2px solid #000;
+  border-right: 2px solid #000;
+}
+
+

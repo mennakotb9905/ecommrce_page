@@ -1,0 +1,169 @@
+<section class="product-details-page">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a routerLink="/">Home</a>
+      <span>></span>
+      <a href="#">Electronics</a>
+      <span>></span>
+      <span>{{ product()?.title }}</span>
+    </nav>
+
+    <div class="product-details">
+      <div class="product-gallery">
+        <div class="main-image">
+          <img [src]="product()?.image" [alt]="product()?.title" />
+          <div class="image-badges">
+            <span class="badge new">New</span>
+            <span class="badge sale">-20%</span>
+          </div>
+        </div>
+        <div class="thumbnail-images">
+          <div class="thumbnail active">
+            <img [src]="product()?.image" [alt]="product()?.title" />
+          </div>
+          <div class="thumbnail">
+            <img [src]="product()?.image" [alt]="product()?.title" />
+          </div>
+          <div class="thumbnail">
+            <img [src]="product()?.image" [alt]="product()?.title" />
+          </div>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <div class="product-header">
+          <div class="product-category">Electronics</div>
+          <h1 class="product-title">{{ product()?.title }}</h1>
+          <div class="product-rating">
+            <div class="stars">★★★★★</div>
+            <span class="rating-text">4.8 (128 reviews)</span>
+          </div>
+        </div>
+
+        <div class="product-price-section">
+          <div class="price-row">
+            <span class="current-price">${{ product()?.price }}</span>
+            <span class="original-price">${{ (product()?.price || 0) + 20 }}</span>
+            <span class="discount">Save $20</span>
+          </div>
+          <div class="price-info">
+            <span class="shipping">🚚 Free shipping on orders over $50</span>
+          </div>
+        </div>
+
+        <div class="product-description">
+          <h3>Description</h3>
+          <p>{{ product()?.description }}</p>
+          <ul class="feature-list">
+            <li>High-quality materials</li>
+            <li>1-year warranty</li>
+            <li>Free shipping</li>
+            <li>30-day return policy</li>
+          </ul>
+        </div>
+
+        <div class="product-options">
+          <div class="option-group">
+            <label>Color:</label>
+            <div class="color-options">
+              <button class="color-option active" style="background: #000;"></button>
+              <button class="color-option" style="background: #fff; border: 1px solid #ddd;"></button>
+              <button class="color-option" style="background: #007bff;"></button>
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <label>Size:</label>
+            <div class="size-options">
+              <button class="size-option">S</button>
+              <button class="size-option active">M</button>
+              <button class="size-option">L</button>
+              <button class="size-option">XL</button>
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <label>Quantity:</label>
+            <div class="quantity-selector">
+              <button class="qty-btn" (click)="decreaseQty()">-</button>
+              <span class="qty-value">{{ quantity() }}</span>
+              <button class="qty-btn" (click)="increaseQty()">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-actions">
+          <button class="add-to-cart-btn" (click)="addToCart()">
+            <span>🛒</span>
+            <span>Add to Cart</span>
+          </button>
+          <button class="buy-now-btn" (click)="buyNow()">
+            <span>⚡</span>
+            <span>Buy Now</span>
+          </button>
+          <button class="wishlist-btn" (click)="toggleWishlist()">
+            <span>❤️</span>
+            <span>Add to Wishlist</span>
+          </button>
+        </div>
+
+        <div class="product-features">
+          <div class="feature">
+            <span class="feature-icon">🚚</span>
+            <div class="feature-text">
+              <strong>Free Shipping</strong>
+              <span>On orders over $50</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">↩️</span>
+            <div class="feature-text">
+              <strong>Easy Returns</strong>
+              <span>30-day return policy</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">🛡️</span>
+            <div class="feature-text">
+              <strong>Warranty</strong>
+              <span>1-year manufacturer warranty</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Tabs -->
+    <div class="product-tabs">
+      <div class="tab-nav">
+        <button class="tab-btn active">Description</button>
+        <button class="tab-btn">Specifications</button>
+        <button class="tab-btn">Reviews (128)</button>
+        <button class="tab-btn">Shipping</button>
+      </div>
+      
+      <div class="tab-content">
+        <div class="tab-panel active">
+          <h3>Product Description</h3>
+          <p>{{ product()?.description }}</p>
+          <p>This is a high-quality product designed to meet your needs. It features premium materials and excellent craftsmanship that ensures durability and long-lasting performance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="related-products">
+      <h2>You might also like</h2>
+      <div class="related-grid">
+        <div class="related-card" *ngFor="let p of relatedProducts()">
+          <img [src]="p.image" [alt]="p.title" />
+          <h4>{{ p.title }}</h4>
+          <span class="price">${{ p.price }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

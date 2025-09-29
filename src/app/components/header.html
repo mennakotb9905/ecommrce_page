@@ -1,0 +1,84 @@
+<header class="ecommerce-header">
+  <div class="header-top">
+    <div class="container">
+      <div class="header-top-content">
+        <div class="contact-info">
+          <span>📞 +1 (555) 123-4567</span>
+          <span>✉️ support@shop.com</span>
+        </div>
+        <div class="header-links">
+          <a href="#">Track Order</a>
+          <a href="#">Help</a>
+          <a href="#">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="header-main">
+    <div class="container">
+      <div class="header-main-content">
+        <div class="logo-section">
+          <a routerLink="/" class="logo">
+            <span class="logo-icon">🛍️</span>
+            <span class="logo-text">ShopHub</span>
+          </a>
+        </div>
+        
+        <div class="search-section">
+          <div class="search-bar">
+            <input type="text" placeholder="Search for products..." class="search-input">
+            <button class="search-btn">🔍</button>
+          </div>
+        </div>
+        
+        <div class="header-actions">
+          <div class="wishlist">
+            <button class="action-btn wishlist-btn" routerLink="/wishlist">
+              <span class="icon">❤️</span>
+              <span class="label">Wishlist</span>
+              <span class="wishlist-count" *ngIf="wishlistCount() > 0">{{ wishlistCount() }}</span>
+            </button>
+          </div>
+          
+          <div class="cart">
+            <button class="action-btn cart-btn" routerLink="/cart">
+              <span class="icon">🛒</span>
+              <span class="label">Cart</span>
+              <span class="cart-count" *ngIf="cartCount() > 0">{{ cartCount() }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <nav class="header-nav">
+    <div class="container">
+      <div class="nav-content">
+        <div class="categories">
+          <button class="categories-btn">
+            <span>☰</span>
+            <span>Categories</span>
+          </button>
+        </div>
+        
+        <div class="main-nav">
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+          <a href="#">Electronics</a>
+          <a href="#">Fashion</a>
+          <a href="#">Home & Garden</a>
+          <a href="#">Sports</a>
+          <a href="#">Books</a>
+          <a href="#">Sale</a>
+        </div>
+        
+        <div class="nav-promo">
+          <span>Free shipping on orders over $50!</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+

@@ -1,0 +1,140 @@
+<section class="wishlist-page">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>My Wishlist</h1>
+      <nav class="breadcrumb">
+        <a routerLink="/">Home</a>
+        <span>></span>
+        <span>Wishlist</span>
+      </nav>
+    </div>
+
+    <!-- Empty Wishlist State -->
+    <div *ngIf="wishlist().length === 0" class="empty-wishlist">
+      <div class="empty-wishlist-icon">❤️</div>
+      <h2>Your wishlist is empty</h2>
+      <p>Save items you love by clicking the heart icon on any product.</p>
+      <a routerLink="/" class="continue-shopping-btn">
+        <span>←</span>
+        <span>Start Shopping</span>
+      </a>
+    </div>
+
+    <!-- Wishlist Content -->
+    <div *ngIf="wishlist().length > 0" class="wishlist-content">
+      <div class="wishlist-header">
+        <div class="wishlist-info">
+          <h2>Saved Items ({{ wishlist().length }})</h2>
+          <p>Items you've saved for later</p>
+        </div>
+        <div class="wishlist-actions">
+          <button class="clear-wishlist-btn" (click)="clearWishlist()">
+            <span>🗑️</span>
+            <span>Clear All</span>
+          </button>
+          <button class="share-wishlist-btn" (click)="shareWishlist()">
+            <span>📤</span>
+            <span>Share</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="wishlist-grid">
+        <div class="wishlist-item" *ngFor="let product of wishlist()">
+          <div class="item-image">
+            <img [src]="product.image" [alt]="product.title" />
+            <div class="item-badges">
+              <span class="badge new" *ngIf="product.id === '1'">New</span>
+              <span class="badge sale" *ngIf="product.id === '2'">Sale</span>
+            </div>
+            <div class="item-actions">
+              <button class="action-btn remove-btn" (click)="removeFromWishlist(product.id)" title="Remove from wishlist">
+                ❤️
+              </button>
+              <button class="action-btn quick-view-btn" title="Quick View">👁️</button>
+            </div>
+          </div>
+          
+          <div class="item-info">
+            <div class="item-category">Electronics</div>
+            <h3 class="item-title">
+              <a [routerLink]="['/product', product.id]">{{ product.title }}</a>
+            </h3>
+            <p class="item-description">{{ product.description }}</p>
+            
+            <div class="item-rating">
+              <div class="stars">★★★★★</div>
+              <span class="rating-count">(128)</span>
+            </div>
+            
+            <div class="item-price">
+              <span class="current-price">${{ product.price }}</span>
+              <span class="original-price" *ngIf="product.id === '2'">${{ product.price + 20 }}</span>
+            </div>
+            
+            <div class="item-availability">
+              <span class="availability-status in-stock">✅ In Stock</span>
+            </div>
+            
+            <div class="item-actions-bottom">
+              <button class="add-to-cart-btn" (click)="addToCart(product)">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+              </button>
+              <button class="buy-now-btn" (click)="buyNow(product)">
+                <span>⚡</span>
+                <span>Buy Now</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wishlist Summary -->
+      <div class="wishlist-summary">
+        <div class="summary-card">
+          <h3>Wishlist Summary</h3>
+          <div class="summary-stats">
+            <div class="stat">
+              <span class="stat-number">{{ wishlist().length }}</span>
+              <span class="stat-label">Items Saved</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">${{ getTotalValue() }}</span>
+              <span class="stat-label">Total Value</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">${{ getAveragePrice() }}</span>
+              <span class="stat-label">Average Price</span>
+            </div>
+          </div>
+          
+          <div class="summary-actions">
+            <button class="add-all-to-cart-btn" (click)="addAllToCart()">
+              <span>🛒</span>
+              <span>Add All to Cart</span>
+            </button>
+            <button class="share-wishlist-btn" (click)="shareWishlist()">
+              <span>📤</span>
+              <span>Share Wishlist</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommended Products -->
+    <div *ngIf="wishlist().length > 0" class="recommended-section">
+      <h2>You might also like</h2>
+      <div class="recommended-grid">
+        <div class="recommended-item" *ngFor="let product of recommendedProducts()">
+          <img [src]="product.image" [alt]="product.title" />
+          <h4>{{ product.title }}</h4>
+          <span class="price">${{ product.price }}</span>
+          <button class="add-btn" (click)="addToCart(product)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
